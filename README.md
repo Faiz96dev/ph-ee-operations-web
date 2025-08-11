@@ -84,7 +84,7 @@ Setting for the callback url to Vouchers creation process
 Setting for the Payment Hub server url to Account Management backend services
 
 `PH_PLATFORM_TENANT_ID`
-Setting for the Platform Tenant Identifier used in the APIs calls, Default value `phdefault`
+Setting for the Platform Tenant Identifier used in the APIs calls, Default value `fineract_default`
 
 `PH_OAUTH_ENABLED`
 Boolean value to Enable or Disable the OAuth authentication

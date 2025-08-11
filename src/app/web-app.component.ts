@@ -134,7 +134,7 @@ export class WebAppComponent implements OnInit {
     // Set the server list from the env var FINERACT_API_URLS
     // this.settingsService.setServers(environment.serverUrls.split(','));
     // Set the Tenant Identifier(s) list from the env var
-    this.settingsService.setTenantIdentifier(environment.tenant || 'phdefault');
+    this.settingsService.setTenantIdentifier(environment.tenant || 'fineract_default');
   }
 
 }

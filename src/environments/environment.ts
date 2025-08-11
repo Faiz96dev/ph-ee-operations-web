@@ -9,32 +9,34 @@ import env from './.env';
 export let environment = {
   name: 'dev',
   production: false,
-  version: env.phee.version + '-dev',
+  version: (((env as any).phee?.version) || ((env as any).npm_package_version) || '0.0.0') + '-dev',
   backend: {
-    operations: window['env']['serverApiUrlOps'] || 'http://ops.local/opsapp/api/v1',
-    signatureApiUrl: window['env']['signatureApiUrl'] || 'http://ops.local/opsapp/api/v1',
-    bulkConnectorOps: window['env']['bulkConnectorOps'] || 'https://bulk-connector-demo.sandbox.fynarfin.io',
-    vouchers: window['env']['serverApiUrlVou'] || 'http://ops.local/opsapp/api/v1',
-    voucherCallbackUrl: window['env']['callbackUrlVou'] || 'https://webhook.site/',
-    account: window['env']['serverApiUrlAct'] || 'http://ops.local/opsapp/api/v1',
-    registeringInstituionId: window['env']['registeringInstitutionId'] || 'default',
+    operations: (window as any)['env']['serverApiUrlOps'] || '/api/v1',
+    signatureApiUrl: (window as any)['env']['signatureApiUrl'] || '/api/v1',
+    // Route bulk connector calls through the dev proxy to avoid CORS in development
+    bulkConnectorOps: (window as any)['env']['bulkConnectorOps'] || '/bulk-connector',
+    vouchers: (window as any)['env']['serverApiUrlVou'] || '/api/v1',
+    voucherCallbackUrl: (window as any)['env']['callbackUrlVou'] || 'https://webhook.site/',
+    account: (window as any)['env']['serverApiUrlAct'] || '/api/v1',
+    registeringInstituionId: (window as any)['env']['registeringInstitutionId'] || 'default',
   },
   oauth: {
     // For connecting to Mifos X using OAuth2 Authentication change the value to true
-    enabled: window['env']['oauthEnabled'] || false,
-    type: window['env']['oauthType'] || 'keycloak',
-    serverUrl: window['env']['oauthServerUrl'] || 'http://keycloak.sandbox.fynarfin.io/auth',
-    realm: window['env']['oauthRealm'] || 'paymenthub',
-    clientId: window['env']['oauthClientId'] || 'opsapp',
-    clientSecret: window['env']['oauthClientSecret'] || '',
-    basicAuth: window['env']['oauthBasicAuth'] || true,
-    basicAuthToken: window['env']['oauthBasicAuthToken'] || 'Y2xpZW50Og=='
+    enabled: (window as any)['env']['oauthEnabled'] || false,
+    type: (window as any)['env']['oauthType'] || 'keycloak',
+    // Route OAuth server calls through the dev proxy to avoid CORS in development
+    serverUrl: (window as any)['env']['oauthServerUrl'] || '/auth',
+    realm: (window as any)['env']['oauthRealm'] || 'paymenthub',
+    clientId: (window as any)['env']['oauthClientId'] || 'opsapp',
+    clientSecret: (window as any)['env']['oauthClientSecret'] || '',
+    basicAuth: (window as any)['env']['oauthBasicAuth'] || true,
+    basicAuthToken: (window as any)['env']['oauthBasicAuthToken'] || 'Y2xpZW50Og=='
   },
   auth: {
-    enabled: window['env']['authEnabled'] || false,
+    enabled: (window as any)['env']['authEnabled'] || false,
   },
-  tenant: window['env']['platformTenantId'] || 'phdefault',
-  tenants: window['env']['platformTenantIds'] || 'phdefault',
-  defaultLanguage: window['env']['defaultLanguage'] || 'en',
-  supportedLanguages: window['env']['supportedLanguages'] || ['en', 'fr']
+  tenant: (window as any)['env']['platformTenantId'] || 'fineract_default',
+  tenants: (window as any)['env']['platformTenantIds'] || 'fineract_default',
+  defaultLanguage: (window as any)['env']['defaultLanguage'] || 'en',
+  supportedLanguages: (window as any)['env']['supportedLanguages'] || ['en', 'fr']
 };

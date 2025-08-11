@@ -1,0 +1,42 @@
+services:
+  phee-web-app-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - '4200:4200'
+    volumes:
+      # Mount source code for hot reload
+      - ./src:/usr/src/app/src
+      - ./angular.json:/usr/src/app/angular.json
+      - ./tsconfig.json:/usr/src/app/tsconfig.json
+      - ./tsconfig.app.json:/usr/src/app/tsconfig.app.json
+      - ./package.json:/usr/src/app/package.json
+      - ./package-lock.json:/usr/src/app/package-lock.json
+      # Exclude node_modules to avoid conflicts
+      - /usr/src/app/node_modules
+    environment:
+      # Route all API calls through Angular dev proxy to avoid CORS locally
+      - PH_OPS_BACKEND_SERVER_URL=/api/v1
+      - PH_OPS_BULK_CONNECTOR_URL=/bulk-connector
+      - PH_OPS_SIGNATURE_URL=/api/v1
+      - PH_VOU_BACKEND_SERVER_URL=/api/v1
+      - PH_VOU_CALLBACK_URL=https://webhook.site/
+      - PH_ACT_BACKEND_SERVER_URL=https://phee-ui-dev.omniaid.dev/api/v1
+      - PH_PLATFORM_TENANT_ID=fineract_default
+      - PH_PLATFORM_TENANT_IDS=fineract_default
+      - PH_REGISTERING_INSTITUTION_ID=SocialInstitution
+      - PH_AUTH_ENABLED=false
+      - PH_OAUTH_ENABLED=false
+      - PH_OAUTH_TYPE=keycloak
+      # Route OAuth through dev proxy as well
+      - PH_OAUTH_SERVER_URL=/auth
+      - PH_OAUTH_REALM=paymenthub
+      - PH_OAUTH_CLIENT_ID=opsapp
+      - PH_OAUTH_CLIENT_SECRET=Y2xpZW50Og==
+      - PH_OAUTH_BASIC_AUTH=true
+      - PH_OAUTH_BASIC_AUTH_TOKEN=Y2xpZW50Og==
+      - PH_DEFAULT_LANGUAGE=en
+      - PH_SUPPORTED_LANGUAGES=en,fr,es
+    stdin_open: true
+    tty: true

@@ -1,0 +1,27 @@
+{
+  "/api/v1": {
+    "target": "https://phee-ui-dev.omniaid.dev",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "headers": {
+      "Authorization": "Basic b21uaWFpZDpqaTVlaUdodQ=="
+    }
+  },
+  "/bulk-connector": {
+    "target": "https://bulk-connector-demo.sandbox.fynarfin.io",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": { "^/bulk-connector": "" }
+  }
+  ,
+  "/auth": {
+    "target": "http://keycloak.sandbox.fynarfin.io",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
+
+

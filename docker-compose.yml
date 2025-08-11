@@ -1,5 +1,3 @@
-version: '3.5'
-
 services:
   phee-web-app:
     build:
@@ -18,8 +16,8 @@ services:
       - PH_OPS_BACKEND_SERVER_URL=https://paymenthub.qa.oneacrefund.org/opsapp/api/v1
       - PH_VOU_BACKEND_SERVER_URL=https://paymenthub.qa.oneacrefund.org/opsapp/api/v1
       - PH_ACT_BACKEND_SERVER_URL=https://paymenthub.qa.oneacrefund.org/opsapp/api/v1
-      - PH_PLATFORM_TENANT_ID=phdefault
-      - PH_PLATFORM_TENANT_IDS=phdefault
+      - PH_PLATFORM_TENANT_ID=fineract_default
+      - PH_PLATFORM_TENANT_IDS=fineract_default
       - PH_REGISTERING_INSTITUTION_ID=SocialInstitution
       - PH_AUTH_ENABLED=false
       - PH_OAUTH_ENABLED=false
