@@ -58,3 +58,4 @@ package-lock.json
 src/assets/*.properties
 src/assets/env.js
 dockerpass.txt
+proxy.conf.json
